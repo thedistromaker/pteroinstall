@@ -165,8 +165,8 @@ else
     echo "[OK] Deleted old config."
 fi
 echo "[IN] Writing nginx config..."
-echo "server {
-    # Replace the example <domain> with your domain name or IP address
+cat <<EOF > /etc/nginx/sites-available/pterodactyl.conf
+server {
     listen 80;
     server_name $APPURL;
 
@@ -175,42 +175,45 @@ echo "server {
     charset utf-8;
 
     location / {
-        try_files $uri $uri/ /index.php?$query_string;
+        try_files \$uri \$uri/ /index.php?\$query_string;
     }
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }
 
     access_log off;
-    error_log  /var/log/nginx/pterodactyl.app-error.log error;
+    error_log /var/log/nginx/pterodactyl.app-error.log error;
 
-    # allow larger file uploads and longer script runtimes
     client_max_body_size 100m;
     client_body_timeout 120s;
 
     sendfile off;
 
-    location ~ \.php$ {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    location ~ \\.php$ {
+        fastcgi_split_path_info ^(.+\\.php)(/.+)\$;
         fastcgi_pass unix:/run/php/php8.3-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
-        fastcgi_param PHP_VALUE "upload_max_filesize = 100M \n post_max_size=100M";
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        fastcgi_param PHP_VALUE "upload_max_filesize=100M \\n post_max_size=100M";
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+
         fastcgi_param HTTP_PROXY "";
         fastcgi_intercept_errors off;
+
         fastcgi_buffer_size 16k;
         fastcgi_buffers 4 16k;
+
         fastcgi_connect_timeout 300;
         fastcgi_send_timeout 300;
         fastcgi_read_timeout 300;
     }
 
-    location ~ /\.ht {
+    location ~ /\\.ht {
         deny all;
     }
 }
-" > /etc/nginx/sites-available/pterodactyl.conf
+EOF
 ret=$?
 if [ $ret -ne 0 ]; then
     echo "[!!] Failed to write new config to /etc/nginx/sites-available/pteroadctyl.conf."
