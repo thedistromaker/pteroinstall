@@ -23,7 +23,6 @@ commands=(
 php_exts=(
     gd
     mysqli
-    pdo_mysql
     mbstring
     bcmath
     xml
