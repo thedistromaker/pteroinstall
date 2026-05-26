@@ -36,7 +36,7 @@ esac
 case $DISTRO in
     debian)
         if command -v curl; then
-            curl -LOJ -# https://cdn.jsdelivr.net/gh/thedistromaker/pteroinstall@script/current/debian/orchestrator.sh # Main support.
+            curl -LOJ -# https://raw.githubusercontent.com/thedistromaker/pteroinstall/script/current/debian/orchestrator.sh # Main support.
             ret=$?
             if [ $ret -ne 0 ]; then
                 echo "[!!] Failed to download https://cdn.jsdelivr.net/gh/thedistromaker/pteroinstall@script/current/debian/orchestrator.sh as orchestrator.sh."
