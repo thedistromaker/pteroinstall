@@ -27,7 +27,7 @@ else
     echo "[OK] Copied .env."
 fi
 echo "[IN] Starting Composer install..."
-COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader > /dev/null
+COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader > /dev/null 2>&1
 ret=$?
 if [ $ret -ne 0 ]; then
     echo "[!!] Failed to set up Composer."
@@ -86,7 +86,7 @@ else
     echo "[OK] Configured [5/5]."
 fi
 echo "[IN] Adding aux configs..."
-read -r "[CFG] What APP_URL should be set (eg localhost, 192.168.1.x, https://example.com, yourdomain, etc): " APPURL
+read -p "[CFG] What APP_URL should be set (eg localhost, 192.168.1.x, https://example.com, yourdomain, etc): " APPURL
 TIMEZONE=$(readlink -f /etc/localtime | sed 's|.*/zoneinfo/||')
 echo "[IN] Verifying config:"
 echo "[CFG] URL=$APP_URL"

@@ -3,7 +3,7 @@
 
 if [ -n $PHP ]; then
     echo "[IN] Installing php..."
-    apt install -y php8.3 > /dev/null
+    ap install -y php8.3 > /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         echo "[!!] Failed to install php8.3. Check logs for more info. Code: $ret."
@@ -14,7 +14,7 @@ if [ -n $PHP ]; then
 fi
 if [ -n $BASIC ]; then
     echo "[IN] Installing basic commands..."
-    cat .basic.missing | cut -c 6- | xargs apt install -y > /dev/null
+    cat .basic.missing | cut -c 6- | xargs ap install -y > /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         echo "[!!] Failed to install basic commands. Check logs for more info. Code: $ret."
@@ -25,7 +25,7 @@ if [ -n $BASIC ]; then
 fi
 if [ -n $PHPEXT ]; then
     echo "[IN] Installing PHP extensions..."
-    cat .ext.missing | cut -c 6- | xargs apt install -y > /dev/null
+    cat .ext.missing | cut -c 6- | xargs ap install -y > /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         echo "[!!] Failed to install PHP extensions. Check logs for more info. Code: $ret."
@@ -36,7 +36,7 @@ if [ -n $PHPEXT ]; then
 fi
 if [ -n $PHPFPM ]; then
     echo "[IN] Installing php-fpm..."
-    apt install -y php8.3-fpm > /dev/null
+    ap install -y php8.3-fpm > /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         echo "[!!] Failed to install php-fpm. Check logs for more info. Code: $ret."
