@@ -144,4 +144,4 @@ rm -- "$0"
 mv tr.sh main.sh
 chmod +x main.sh
 # exec
-exec ./main.sh
+exec ./main.sh panel-install
