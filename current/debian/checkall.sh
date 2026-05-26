@@ -77,6 +77,18 @@ if ! command -v "$PHP_BIN" >/dev/null 2>&1; then
     echo "[!!] PHP missing"
     touch .ext.missing
     touch .php.missing
+    tee .ext.missing > /dev/null << 'EOF'
+[!!] php8.3-common
+[!!] php8.3-cli
+[!!] php8.3-gd
+[!!] php8.3-mysql
+[!!] php8.3-mbstring
+[!!] php8.3-bcmath
+[!!] php8.3-xml
+[!!] php8.3-fpm
+[!!] php8.3-curl
+[!!] php8.3-zip
+EOF
 else
     for ext in "${php_exts[@]}"; do
         if "$PHP_BIN" -m | grep -qi "^$ext$"; then

@@ -35,8 +35,8 @@ if [ -n $PHPEXT ]; then
     fi
 fi
 if [ -n $PHPFPM ]; then
-    echo "[IN] Installing basic commands..."
-    apt install -y php8.3-fpm
+    echo "[IN] Installing php-fpm..."
+    apt install -y php8.3-fpm > /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         echo "[!!] Failed to install php-fpm. Check logs for more info. Code: $ret."
@@ -47,7 +47,7 @@ if [ -n $PHPFPM ]; then
 fi
 if [ -n $COMPOSER ]; then
     echo "[IN] Downloading PHP Composer..."
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer  > /dev/null
     ret=$?
     if [ $ret -ne 0 ]; then
         echo "[!!] Failed to install Composer. Check logs for more info. Code: $ret."
