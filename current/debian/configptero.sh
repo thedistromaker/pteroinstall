@@ -4,12 +4,12 @@
 cd /var/www/pterodactyl
 echo "[IN] Starting MariaDB setup..."
 read -s -p "[IN] Enter your Pterodactyl user password (remember this!): " DB_PASS
-mariadb -u root <<EOF
+mariadb -u root <<EOF > /dev/null 2>&1
 CREATE USER 'pterodactyl'@'127.0.0.1' IDENTIFIED BY '${DB_PASS}';
 CREATE DATABASE panel;
 GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyl'@'127.0.0.1' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
-EOF > /dev/null
+EOF
 ret=$?
 if [ $ret -ne 0 ]; then
     echo "[!!] Failed to set up MariaDB."
