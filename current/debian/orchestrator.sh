@@ -1,11 +1,11 @@
 #!/bin/bash
 ftinstall() {
 mkdir scripts
-curl -Lo scripts/checkall.sh -# https://cdn.jsdelivr.net/gh/thedistromaker/pteroinstall@script/current/debian/checkall.sh
-curl -Lo scripts/installrepo.sh -# https://cdn.jsdelivr.net/gh/thedistromaker/pteroinstall@script/current/debian/installrepo.sh
-curl -Lo scripts/installer.sh -# https://cdn.jsdelivr.net/gh/thedistromaker/pteroinstall@script/current/debian/installpkg.sh
-curl -Lo scripts/panelinstall.sh -# https://cdn.jsdelivr.net/gh/thedistromaker/pteroinstall@script/current/debian/panelinstall.sh
-curl -Lo scripts/configptero.sh -# https://cdn.jsdelivr.net/gh/thedistromaker/pteroinstall@script/current/debian/configptero.sh
+curl -Lo scripts/checkall.sh -# https://raw.githubusercontent.com/thedistromaker/pteroinstall/script/current/debian/checkall.sh
+curl -Lo scripts/installrepo.sh -# https://raw.githubusercontent.com/thedistromaker/pteroinstall/script/current/debian/installrepo.sh
+curl -Lo scripts/installer.sh -# https://raw.githubusercontent.com/thedistromaker/pteroinstall/script/current/debian/installpkg.sh
+curl -Lo scripts/panelinstall.sh -# https://raw.githubusercontent.com/thedistromaker/pteroinstall/script/current/debian/panelinstall.sh
+curl -Lo scripts/configptero.sh -# https://raw.githubusercontent.com/thedistromaker/pteroinstall/script/current/debian/configptero.sh
 chmod +x scripts/*
 ./scripts/checkall.sh || { echo "Failed to check all packages."; exit 0; } 
 ./scripts/installrepo.sh || { echo "Failed to install repos."; exit 0; } 
