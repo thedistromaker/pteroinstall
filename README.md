@@ -1,0 +1,2 @@
+# pteroinstall
+Pterodactyl autoinstall scripts.
