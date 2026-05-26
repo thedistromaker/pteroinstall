@@ -30,10 +30,6 @@ case $1 in
                 ;;
         esac
         ;;
-    *)
-        echo "[!!] Invalid option: $1"
-        exit 1
-        ;;
 esac
 [ -e "tr.sh" ] && rm -rf -- tr.sh
 [ -e "main.sh" ] && rm -rf -- main.sh
